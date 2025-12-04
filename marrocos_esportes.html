@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marrocos: Apresentação Interativa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'morocco-red': '#C1272D',
+                        'morocco-green': '#006233',
+                        'majorelle-blue': '#0055A4',
+                        'sand-gold': '#D4AF37',
+                    },
+                    fontFamily: {
+                        'display': ['"Cinzel Decorative"', 'serif'],
+                        'body': ['"Montserrat"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos Gerais */
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background-color: #f9fafb;
+        }
+
+        /* Tabs */
+        .tab-content {
+            display: none;
+            height: 100vh;
+            width: 100%;
+            overflow-y: auto;
+            padding-top: 80px;
+            padding-bottom: 40px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .tab-content.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-btn.active {
+            color: #C1272D;
+            border-bottom: 3px solid #C1272D;
+        }
+
+        /* Timeline Styles */
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 20px;
+            width: 4px;
+            background: #e5e7eb;
+        }
+        @media (min-width: 768px) {
+            .timeline-line { left: 50%; transform: translateX(-50%); }
+        }
+
+        /* Animação suave para o bloco 2025 */
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.01); }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 4s infinite ease-in-out;
+        }
+
+        /* Estilo da Home */
+        #home {
+            padding-top: 0;
+            padding-bottom: 0;
+            background-image: url('jogadores.jpg'); 
+            background-color: #1a1a1a; 
+            background-size: cover;
+            background-position: center;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(193, 39, 45, 0.9));
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+        
+        .zellige-bg {
+            background-image: radial-gradient(#0055A4 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body class="font-body text-gray-800">
+
+    <!-- MENU -->
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur shadow-sm h-20 flex items-center justify-between px-4 md:px-8">
+        <div class="flex items-center gap-2 cursor-pointer" onclick="openTab('home')">
+            <div class="w-3 h-3 bg-morocco-green rounded-full"></div>
+            <span class="font-display text-xl md:text-2xl text-majorelle-blue font-bold tracking-widest">MARROCOS</span>
+        </div>
+        
+        <div class="hidden md:flex space-x-6">
+            <button class="nav-btn font-bold text-gray-500 hover:text-morocco-red transition uppercase text-xs tracking-widest py-2" onclick="openTab('panorama')">Panorama</button>
+            <button class="nav-btn font-bold text-gray-500 hover:text-morocco-red transition uppercase text-xs tracking-widest py-2" onclick="openTab('esportes')">Esportes</button>
+            <button class="nav-btn font-bold text-gray-500 hover:text-morocco-red transition uppercase text-xs tracking-widest py-2" onclick="openTab('conquistas')">Conquistas</button>
+            <button class="nav-btn font-bold text-gray-500 hover:text-morocco-red transition uppercase text-xs tracking-widest py-2" onclick="openTab('cultura')">Cultura</button>
+            <button class="nav-btn font-bold text-gray-500 hover:text-morocco-red transition uppercase text-xs tracking-widest py-2" onclick="openTab('futuro')">Futuro</button>
+        </div>
+    </nav>
+
+    <!-- TELA 1: HOME -->
+    <section id="home" class="tab-content active text-center">
+        <div class="overlay"></div>
+        <div class="relative z-10 text-white px-4 max-w-4xl">
+            <span class="block text-sand-gold font-bold tracking-[0.5em] mb-4 text-sm animate-pulse">APRESENTAÇÃO OFICIAL</span>
+            <h1 class="font-display text-5xl md:text-8xl font-bold mb-6 leading-none drop-shadow-2xl">
+                PAIXÃO &<br>GLÓRIA
+            </h1>
+            <p class="text-lg md:text-2xl font-light mb-10 max-w-2xl mx-auto drop-shadow-md">
+                Uma jornada pela ascensão esportiva, tradições ancestrais e o futuro brilhante do Marrocos.
+            </p>
+            <button onclick="openTab('conquistas')" class="bg-morocco-green text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-morocco-green transition duration-300 shadow-lg border-2 border-transparent hover:border-morocco-green uppercase tracking-wider">
+                Ver Conquistas
+            </button>
+        </div>
+    </section>
+
+    <!-- TELA 2: PANORAMA -->
+    <section id="panorama" class="tab-content zellige-bg items-center justify-center">
+        <div class="max-w-6xl mx-auto px-6 py-8 w-full">
+            <div class="flex flex-col md:flex-row gap-12 items-center h-full">
+                <!-- Coluna de Texto -->
+                <div class="md:w-1/2">
+                    <h2 class="font-display text-4xl md:text-5xl text-majorelle-blue mb-6">Panorama Geral</h2>
+                    <p class="text-base md:text-lg text-gray-600 leading-loose text-justify mb-8">
+                        "O panorama esportivo em Marrocos é marcado por um período de grande ascensão e investimento estratégico. Impulsionado pelo sucesso global de sua <strong class="text-morocco-red">Seleção de Futebol</strong> e pela tradição vitoriosa no Atletismo, o país se consolidou como potência esportiva regional. O futuro está assegurado pelo maciço investimento em infraestrutura e a co-organização da Copa 2030."
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="text-center p-4 bg-white shadow rounded-lg border-t-4 border-morocco-red w-1/3">
+                            <span class="block font-bold text-2xl text-morocco-red">2022</span>
+                            <span class="text-xs text-gray-500">Semi Copa</span>
+                        </div>
+                        <div class="text-center p-4 bg-white shadow rounded-lg border-t-4 border-sand-gold w-1/3">
+                            <span class="block font-bold text-2xl text-sand-gold">2024</span>
+                            <span class="text-xs text-gray-500">Bronze Olimp.</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Imagem -->
+                <div class="md:w-1/2 h-full">
+                    <div class="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                        <img src="img/torcida.webp" alt="Panorama Marrocos" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TELA 3: ESPORTES -->
+    <section id="esportes" class="tab-content bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6 py-10 w-full">
+            <h2 class="font-display text-4xl text-gray-800 mb-8 text-center">Principais Modalidades</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <!-- Futebol -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition">
+                    <div class="h-48 overflow-hidden">
+                        <img src="img/selecao.webp" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-2xl text-morocco-red mb-2">Futebol</h3>
+                        <p class="text-sm text-gray-600">A grande paixão nacional. Clubes como Wydad e Raja, e a seleção Atlas Lions fazendo história mundial.</p>
+                    </div>
+                </div>
+                <!-- Atletismo -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition">
+                    <div class="h-48 overflow-hidden">
+                        <img src="img/el bakkali.webp" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-2xl text-sand-gold mb-2">Atletismo</h3>
+                        <p class="text-sm text-gray-600">A modalidade de ouro. 21 das 26 medalhas olímpicas do país vieram das pistas de corrida.</p>
+                    </div>
+                </div>
+                <!-- Futsal -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition">
+                    <div class="h-48 overflow-hidden">
+                        <img src="img/futsal.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-2xl text-majorelle-blue mb-2">Futsal</h3>
+                        <p class="text-sm text-gray-600">Potência em ascensão. A seleção domina o cenário africano e brilha no palco mundial.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center mb-8">
+                <div class="h-px bg-gray-300 w-1/4"></div>
+                <h3 class="font-display text-2xl text-gray-600 mx-4">Em Crescimento</h3>
+                <div class="h-px bg-gray-300 w-1/4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-white rounded-xl shadow p-3 hover:shadow-lg transition text-center">
+                    <div class="h-32 rounded-lg overflow-hidden mb-3">
+                        <img src="img/surf.jpg" class="w-full h-full object-cover hover:scale-105 transition">
+                    </div>
+                    <h4 class="font-bold text-morocco-blue text-sm uppercase">Surf & Kitesurf</h4>
+                    <p class="text-xs text-gray-500 mt-1">Essaouira: "A cidade ventosa da África".</p>
+                </div>
+                <div class="bg-white rounded-xl shadow p-3 hover:shadow-lg transition text-center">
+                    <div class="h-32 rounded-lg overflow-hidden mb-3">
+                        <img src="img/ciclismo2.webp" class="w-full h-full object-cover hover:scale-105 transition">
+                    </div>
+                    <h4 class="font-bold text-morocco-blue text-sm uppercase">Ciclismo</h4>
+                    <p class="text-xs text-gray-500 mt-1">Modalidade urbana e outdoor ganhando terreno.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow p-3 hover:shadow-lg transition text-center">
+                    <div class="h-32 rounded-lg overflow-hidden mb-3">
+                        <img src="img/basket.jpg" class="w-full h-full object-cover hover:scale-105 transition">
+                    </div>
+                    <h4 class="font-bold text-morocco-blue text-sm uppercase">Basquete</h4>
+                    <p class="text-xs text-gray-500 mt-1">Ligas nacionais promovendo competições locais.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow p-3 hover:shadow-lg transition text-center">
+                    <div class="h-32 rounded-lg overflow-hidden mb-3">
+                        <img src="img/hand.png" class="w-full h-full object-cover hover:scale-105 transition">
+                    </div>
+                    <h4 class="font-bold text-morocco-blue text-sm uppercase">Handebol</h4>
+                    <p class="text-xs text-gray-500 mt-1">Clubes e federações em plena ascensão.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TELA: CONQUISTAS E RECORDES -->
+    <section id="conquistas" class="tab-content bg-white">
+        <div class="max-w-5xl mx-auto px-6 py-10 w-full relative">
+            
+            <div class="text-center mb-12">
+                <h2 class="font-display text-4xl text-morocco-red">Grandes Conquistas & Recordes</h2>
+                <p class="text-gray-500 mt-2">Uma história de pioneirismo (1984–2025)</p>
+            </div>
+
+            <!-- Espaço para Imagem de Troféu -->
+            <div class="w-full h-32 md:h-48 rounded-xl overflow-hidden mb-12 shadow-lg border-2 border-sand-gold relative">
+                <img src="img/band.jpg" class="w-full h-full object-cover opacity-90">
+                <div class="absolute inset-0 flex items-center justify-center bg-black/40">
+                    <span class="text-white font-display text-2xl md:text-3xl font-bold tracking-widest">GLÓRIA ETERNA</span>
+                </div>
+            </div>
+
+            <!-- Linha do Tempo Completa -->
+            <div class="relative mb-20">
+                <!-- Linha Vertical -->
+                <div class="timeline-line"></div>
+
+                <!-- 1984 -->
+                <div class="mb-8 flex flex-col md:flex-row items-center w-full group">
+                    <div class="md:w-1/2 md:pr-8 md:text-right order-2 md:order-1 text-center md:text-right mt-2 md:mt-0">
+                        <h3 class="font-bold text-xl text-sand-gold">1984 - Olimpíadas</h3>
+                        <p class="text-sm text-gray-600">Nawal El Moutawakel: Ouro 400m c/ barreiras. 1ª mulher árabe/africana campeã.</p>
+                    </div>
+                    <div class="z-10 bg-sand-gold text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs order-1 md:order-2 shadow-lg ring-4 ring-white">84</div>
+                    <div class="md:w-1/2 md:pl-8 order-3 hidden md:block"></div>
+                </div>
+
+                <!-- 1986 -->
+                <div class="mb-8 flex flex-col md:flex-row items-center w-full group">
+                    <div class="md:w-1/2 md:pr-8 hidden md:block order-1"></div>
+                    <div class="z-10 bg-morocco-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs order-1 md:order-2 shadow-lg ring-4 ring-white">86</div>
+                    <div class="md:w-1/2 md:pl-8 md:text-left order-2 md:order-3 text-center mt-2 md:mt-0">
+                        <h3 class="font-bold text-xl text-morocco-red">1986 - Copa do Mundo</h3>
+                        <p class="text-sm text-gray-600">Liderança de grupo e oitavas de final inéditas para África/Mundo Árabe.</p>
+                    </div>
+                </div>
+
+                <!-- 2004 -->
+                <div class="mb-8 flex flex-col md:flex-row items-center w-full group">
+                    <div class="md:w-1/2 md:pr-8 md:text-right order-2 md:order-1 text-center md:text-right mt-2 md:mt-0">
+                        <h3 class="font-bold text-xl text-morocco-green">2004 - Atletismo</h3>
+                        <p class="text-sm text-gray-600">Hicham El Guerrouj: Ouro duplo (1500m e 5000m).</p>
+                    </div>
+                    <div class="z-10 bg-morocco-green text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs order-1 md:order-2 shadow-lg ring-4 ring-white">04</div>
+                    <div class="md:w-1/2 md:pl-8 hidden md:block order-3"></div>
+                </div>
+
+                <!-- Futsal (16, 20, 24) -->
+                <div class="mb-8 flex flex-col md:flex-row items-center w-full group">
+                    <div class="md:w-1/2 md:pr-8 hidden md:block order-1"></div>
+                    <div class="z-10 bg-majorelle-blue text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs order-1 md:order-2 shadow-lg ring-4 ring-white">🏆</div>
+                    <div class="md:w-1/2 md:pl-8 md:text-left order-2 md:order-3 text-center mt-2 md:mt-0">
+                        <h3 class="font-bold text-xl text-majorelle-blue">Futsal (2016, 20, 24)</h3>
+                        <p class="text-sm text-gray-600">Dinastia Absoluta: Três títulos consecutivos africanos.</p>
+                    </div>
+                </div>
+
+                <!-- 2022 -->
+                <div class="mb-8 flex flex-col md:flex-row items-center w-full group">
+                    <div class="md:w-1/2 md:pr-8 md:text-right order-2 md:order-1 text-center md:text-right mt-2 md:mt-0">
+                        <h3 class="font-bold text-xl text-morocco-red">2022 - Copa do Mundo</h3>
+                        <p class="text-sm text-gray-600 font-semibold">Histórico! Primeira seleção africana e árabe na semifinal.</p>
+                    </div>
+                    <div class="z-10 bg-morocco-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs order-1 md:order-2 shadow-lg ring-4 ring-white">22</div>
+                    <div class="md:w-1/2 md:pl-8 hidden md:block order-3"></div>
+                </div>
+                
+                <!-- 2024 -->
+                <div class="mb-8 flex flex-col md:flex-row items-center w-full group">
+                    <div class="md:w-1/2 md:pr-8 hidden md:block order-1"></div>
+                    <div class="z-10 bg-sand-gold text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs order-1 md:order-2 shadow-lg ring-4 ring-white">24</div>
+                    <div class="md:w-1/2 md:pl-8 md:text-left order-2 md:order-3 text-center mt-2 md:mt-0">
+                        <h3 class="font-bold text-xl text-sand-gold">2024 - Olimpíadas</h3>
+                        <p class="text-sm text-gray-600">Medalha de Bronze no Futebol (6-0 vs Egito).</p>
+                    </div>
+                </div>
+
+                <!-- 2025 Sub-20 -->
+                <div class="mb-8 flex flex-col md:flex-row items-center w-full group">
+                    <div class="md:w-1/2 md:pr-8 md:text-right order-2 md:order-1 text-center md:text-right mt-2 md:mt-0">
+                        <h3 class="font-bold text-xl text-gray-800">2025 - Mundial Sub-20</h3>
+                        <p class="text-sm text-gray-600">Marrocos campeão mundial Sub-20 pela primeira vez.</p>
+                    </div>
+                    <div class="z-10 bg-gray-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs order-1 md:order-2 shadow-lg ring-4 ring-white">25</div>
+                    <div class="md:w-1/2 md:pl-8 hidden md:block order-3"></div>
+                </div>
+            </div>
+
+            <!-- ============================================== -->
+            <!--   DESTAQUE GIGANTE 2025 (SUB-17)               -->
+            <!-- ============================================== -->
+            <div class="w-full mt-8 mb-12 relative z-10 animate-pulse-slow">
+                <div class="bg-gradient-to-br from-morocco-red to-red-900 text-white p-6 md:p-10 rounded-3xl shadow-2xl border-4 border-sand-gold relative overflow-hidden group hover:scale-[1.01] transition duration-500">
+                    
+                    <!-- Decoração de Fundo -->
+                    <div class="absolute -top-10 -right-10 text-white opacity-5 text-9xl font-display font-black pointer-events-none">2025</div>
+                    
+                    <div class="relative z-10 text-center">
+                        <span class="inline-block bg-sand-gold text-red-900 font-bold px-4 py-1 rounded-full text-sm mb-4">O ANO DE OURO</span>
+                        <h3 class="font-display text-4xl md:text-6xl text-sand-gold mb-8 drop-shadow-md">2025: A Consagração</h3>
+
+                        <!-- Bloco Sub-17 (Gigante) -->
+                        <div>
+                            <div class="flex items-center justify-center gap-3 mb-4">
+                                <span class="text-3xl">⭐</span>
+                                <h4 class="text-3xl md:text-4xl font-bold">Mundial Sub-17</h4>
+                                <span class="text-3xl">⭐</span>
+                            </div>
+                            
+                            <p class="text-lg md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+                                Uma campanha lendária com goleada de <strong>16-0</strong> (sobre a Nova Caledônia) e uma vitória inesquecível contra a <strong class="text-sand-gold font-black bg-red-900 px-2 rounded">ARGENTINA</strong> na grande final.
+                            </p>
+
+                            <!-- GRID DE IMAGENS GIGANTE -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                
+                                <!-- Foto do Jogo -->
+                                <div class="bg-black/30 p-2 rounded-xl border border-white/20">
+                                    <div class="h-64 md:h-80 rounded-lg overflow-hidden relative shadow-2xl">
+                                        <img src="img/sub.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-700 cursor-pointer">
+                                        <div class="absolute bottom-0 w-full bg-gradient-to-t from-black to-transparent py-4 text-center font-bold text-lg md:text-xl">
+                                            A FINAL HISTÓRICA
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Foto do Craque -->
+                                <div class="bg-black/30 p-2 rounded-xl border border-sand-gold">
+                                    <div class="h-64 md:h-80 rounded-lg overflow-hidden relative shadow-2xl">
+                                        <img src="img/mammou.jpeg" class="w-full h-full object-cover hover:scale-110 transition duration-700 cursor-pointer object-top">
+                                        <div class="absolute bottom-0 w-full bg-sand-gold text-red-900 py-3 text-center font-black text-xl md:text-2xl tracking-widest">
+                                            MAMMOU (MVP)
+                                        </div>
+                                        <div class="absolute top-4 right-4 bg-morocco-green text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                                            CRAQUE DO TORNEIO
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TELA 4: CULTURA -->
+    <section id="cultura" class="tab-content bg-majorelle-blue text-white">
+        <div class="max-w-6xl mx-auto px-6 py-10 w-full">
+            <div class="flex flex-col md:flex-row gap-12 items-start h-full">
+                <!-- Texto -->
+                <div class="md:w-1/2">
+                    <h2 class="font-display text-5xl text-sand-gold mb-6">Tradição & Identidade</h2>
+                    <p class="text-lg font-light leading-relaxed mb-8 text-blue-100">
+                        O esporte no Marrocos transcende a competição. É um ritual que conecta o passado guerreiro ao presente, celebrando a unidade das tribos e a espiritualidade.
+                    </p>
+                    <div class="bg-white/10 p-6 rounded-lg border border-white/20 mb-6">
+                        <h3 class="font-display text-2xl text-sand-gold mb-2">Tbourida (Fantasia)</h3>
+                        <p class="text-sm">Patrimônio da UNESCO. Grupos de cavaleiros (Sorbas) disparam rifles em uníssono, simbolizando sincronia e poder.</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-lg border border-white/20">
+                        <h3 class="font-display text-2xl text-sand-gold mb-2">Mata (Jogo Tribal)</h3>
+                        <p class="text-sm">Competição equestre ancestral da região de Larache, onde a bravura e a estratégia definem o vencedor.</p>
+                    </div>
+                </div>
+                <!-- Imagens -->
+                <div class="md:w-1/2 flex flex-col gap-6">
+                    <div class="relative h-64 rounded-xl overflow-hidden border-2 border-sand-gold shadow-2xl">
+                        <img src="img/tbourida.jpg" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 bg-black/60 text-white text-xs px-2 py-1">Tbourida</div>
+                    </div>
+                    <div class="relative h-48 rounded-xl overflow-hidden border-2 border-white/30 shadow-xl opacity-80 hover:opacity-100 transition">
+                        <img src="img/mata.jpg" class="w-full h-full object-cover">
+                         <div class="absolute bottom-0 left-0 bg-black/60 text-white text-xs px-2 py-1">Mata</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TELA 5: FUTURO -->
+    <section id="futuro" class="tab-content zellige-bg">
+        <div class="max-w-5xl mx-auto px-6 py-10 w-full flex flex-col items-center">
+            <div class="text-center mb-8">
+                <span class="text-morocco-red font-bold tracking-widest text-sm uppercase">Infraestrutura</span>
+                <h2 class="font-display text-5xl text-gray-800 mt-2">Visão 2030</h2>
+            </div>
+            <div class="w-full h-64 rounded-2xl overflow-hidden shadow-xl mb-10 border-b-8 border-morocco-green relative group">
+                <img src="img/estadio2.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                <div class="absolute bottom-4 right-4 bg-white px-4 py-2 rounded-full shadow font-bold text-morocco-green">
+                    COPA DO MUNDO FIFA
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 w-full">
+                <div class="bg-white p-6 shadow-md rounded-xl border-l-4 border-morocco-red">
+                    <h3 class="font-bold text-xl mb-2 text-morocco-red">Modernização</h3>
+                    <p class="text-gray-600 text-sm">Construção de arenas de nível mundial e renovação de centros esportivos em todo o território.</p>
+                </div>
+                <div class="bg-white p-6 shadow-md rounded-xl border-l-4 border-sand-gold">
+                    <h3 class="font-bold text-xl mb-2 text-sand-gold">Legado</h3>
+                    <p class="text-gray-600 text-sm">Foco no desenvolvimento de base e turismo esportivo para garantir um impacto duradouro.</p>
+                </div>
+            </div>
+            <button onclick="openTab('home')" class="mt-12 text-gray-400 hover:text-majorelle-blue text-sm font-semibold">
+                ↺ Voltar ao Início
+            </button>
+        </div>
+    </section>
+
+    <script>
+        function openTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+
+            buttons.forEach(btn => {
+                if(btn.getAttribute('onclick').includes(tabId)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
