@@ -119,10 +119,12 @@
             <span class="font-display text-xl md:text-2xl text-majorelle-blue font-bold tracking-widest">MARROCOS</span>
         </div>
         
-        <div class="hidden md:flex space-x-6">
+        <div class="hidden md:flex space-x-4 lg:space-x-6">
             <button class="nav-btn font-bold text-gray-500 hover:text-morocco-red transition uppercase text-xs tracking-widest py-2" onclick="openTab('panorama')">Panorama</button>
             <button class="nav-btn font-bold text-gray-500 hover:text-morocco-red transition uppercase text-xs tracking-widest py-2" onclick="openTab('esportes')">Esportes</button>
             <button class="nav-btn font-bold text-gray-500 hover:text-morocco-red transition uppercase text-xs tracking-widest py-2" onclick="openTab('conquistas')">Conquistas</button>
+            <!-- NOVA ABA -->
+            <button class="nav-btn font-bold text-gray-500 hover:text-morocco-red transition uppercase text-xs tracking-widest py-2" onclick="openTab('mulheres')">Mulheres</button>
             <button class="nav-btn font-bold text-gray-500 hover:text-morocco-red transition uppercase text-xs tracking-widest py-2" onclick="openTab('cultura')">Cultura</button>
             <button class="nav-btn font-bold text-gray-500 hover:text-morocco-red transition uppercase text-xs tracking-widest py-2" onclick="openTab('futuro')">Futuro</button>
         </div>
@@ -405,6 +407,82 @@
         </div>
     </section>
 
+    <!-- TELA NOVA: MULHERES NO ESPORTE -->
+    <section id="mulheres" class="tab-content bg-white">
+        <div class="max-w-6xl mx-auto px-6 py-10 w-full">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-4xl text-majorelle-blue">Presença Feminina no Esporte</h2>
+                <div class="w-24 h-1 bg-morocco-red mx-auto mt-4 rounded"></div>
+            </div>
+
+            <!-- 1. Superação -->
+            <div class="flex flex-col md:flex-row items-center gap-10 mb-16">
+                <div class="md:w-1/2">
+                    <h3 class="font-display text-2xl text-morocco-red mb-4">1. Superação de Barreiras</h3>
+                    <p class="text-gray-600 leading-relaxed text-justify">
+                        A presença feminina no esporte é marcada por décadas de resistência. Mulheres enfrentaram normas sociais rígidas, falta de incentivo e até proibições. Mesmo com pouca estrutura e investimento, pioneiras desafiaram barreiras, treinando em condições desiguais. A persistência dessas atletas abriu caminho para que novas gerações pudessem competir de forma mais justa.
+                    </p>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="h-64 rounded-xl overflow-hidden shadow-lg border-l-4 border-morocco-red">
+                        <!-- FOTO 1 -->
+                        <img src="img/mulheres1.jpg" class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="Mulheres no Esporte">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Marcos Simbólicos (Destaque Nawal) -->
+            <div class="bg-majorelle-blue/5 rounded-2xl p-8 border border-majorelle-blue/20 mb-16 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-10">
+                    <svg class="w-40 h-40 text-majorelle-blue" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 11a1 1 0 112 0 1 1 0 01-2 0z"/></svg>
+                </div>
+                
+                <div class="flex flex-col md:flex-row-reverse items-center gap-10 relative z-10">
+                    <div class="md:w-1/2">
+                        <h3 class="font-display text-2xl text-majorelle-blue mb-4">2. Marcos Simbólicos: Nawal El Moutawakel</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4 text-justify">
+                            Um dos exemplos mais fortes é o de <strong>Nawal El Moutawakel</strong>. Nas Olimpíadas de 1984, ela venceu os 400m com barreiras, tornando-se a <span class="bg-sand-gold/20 px-1 rounded font-bold text-gray-900">primeira mulher árabe, africana e muçulmana a ganhar um ouro olímpico</span>. Sua vitória mostrou que mulheres de diferentes culturas podiam alcançar o topo, pressionando por mais igualdade.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <div class="h-72 rounded-xl overflow-hidden shadow-xl border-4 border-sand-gold">
+                            <!-- FOTO NAWAL -->
+                            <img src="img/nawal.jpg" class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="Nawal El Moutawakel">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 e 4. Crescimento e Impacto -->
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Crescimento -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-morocco-green hover:-translate-y-2 transition duration-300">
+                    <div class="h-48 rounded-lg overflow-hidden mb-6">
+                        <!-- FOTO CRESCIMENTO -->
+                        <img src="img/crescimento.jpg" class="w-full h-full object-cover" alt="Crescimento Esporte Feminino">
+                    </div>
+                    <h3 class="font-display text-xl text-morocco-green mb-3">3. Crescimento e Representatividade</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed text-justify">
+                        A participação feminina aumentou constantemente. Hoje, mulheres estão em quase todas as modalidades olímpicas. Ligas femininas e projetos sociais ampliaram o acesso desde a infância. Apesar das diferenças salariais e de estrutura que persistem, a representatividade é cada vez maior.
+                    </p>
+                </div>
+
+                <!-- Impacto -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-sand-gold hover:-translate-y-2 transition duration-300">
+                    <div class="h-48 rounded-lg overflow-hidden mb-6">
+                        <!-- FOTO IMPACTO -->
+                        <img src="img/impacto.jpg" class="w-full h-full object-cover" alt="Impacto Social">
+                    </div>
+                    <h3 class="font-display text-xl text-sand-gold mb-3">4. Impacto Social</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed text-justify">
+                        O esporte ajuda a quebrar estereótipos e desafiar padrões de gênero. Fortalece a autoestima, a liderança e a saúde. Para meninas, ver outras mulheres no esporte é inspiração pura. A inclusão promove transformações sociais, provando que talento não tem gênero.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <!-- TELA 4: CULTURA -->
     <section id="cultura" class="tab-content bg-majorelle-blue text-white">
         <div class="max-w-6xl mx-auto px-6 py-10 w-full">
@@ -419,8 +497,7 @@
                     <!-- BLOCO TBOURIDA -->
                     <div class="bg-white/10 p-6 rounded-lg border border-white/20 mb-6">
                         <h3 class="font-display text-2xl text-sand-gold mb-2">Tbourida (Fantasia)</h3>
-                        <p class="text-sm">Patrimônio da UNESCO. Grupos de cavaleiros (Sorbas) disparam rifles em uníssono, simbolizando sincronia e poder.</p>
-                        <!-- BOTÃO REMOVIDO DAQUI -->
+                        <p class="text-sm mb-4">Patrimônio da UNESCO. Grupos de cavaleiros (Sorbas) disparam rifles em uníssono, simbolizando sincronia e poder.</p>
                     </div>
 
                     <div class="bg-white/10 p-6 rounded-lg border border-white/20">
