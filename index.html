@@ -139,7 +139,6 @@
             <p class="text-lg md:text-2xl font-light mb-10 max-w-2xl mx-auto drop-shadow-md">
                 Uma jornada pela ascensão esportiva, tradições ancestrais e o futuro brilhante do Marrocos.
             </p>
-            <!-- BOTÃO ALTERADO -->
             <button onclick="openTab('panorama')" class="bg-morocco-green text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-morocco-green transition duration-300 shadow-lg border-2 border-transparent hover:border-morocco-green uppercase tracking-wider">
                 Iniciar Apresentação
             </button>
@@ -427,10 +426,20 @@
                 </div>
                 <!-- Imagens -->
                 <div class="md:w-1/2 flex flex-col gap-6">
-                    <div class="relative h-64 rounded-xl overflow-hidden border-2 border-sand-gold shadow-2xl">
+                    
+                    <!-- IMAGEM TBOURIDA COM VIDEO -->
+                    <div class="relative h-64 rounded-xl overflow-hidden border-2 border-sand-gold shadow-2xl cursor-pointer group" onclick="openVideo()">
                         <img src="img/tbourida.jpg" class="w-full h-full object-cover">
-                        <div class="absolute bottom-0 left-0 bg-black/60 text-white text-xs px-2 py-1">Tbourida</div>
+                        <!-- Overlay e Ícone de Play -->
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/50 transition duration-300">
+                            <div class="w-16 h-16 bg-white/20 backdrop-blur rounded-full flex items-center justify-center border-2 border-white pl-2 group-hover:scale-110 transition transform">
+                                <!-- Ícone Play SVG -->
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6z"/></svg>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 bg-black/60 text-white text-xs px-2 py-1">Tbourida (Clique para ver)</div>
                     </div>
+
                     <div class="relative h-48 rounded-xl overflow-hidden border-2 border-white/30 shadow-xl opacity-80 hover:opacity-100 transition">
                         <img src="img/mata.jpg" class="w-full h-full object-cover">
                          <div class="absolute bottom-0 left-0 bg-black/60 text-white text-xs px-2 py-1">Mata</div>
@@ -469,7 +478,21 @@
         </div>
     </section>
 
+    <!-- MODAL DE VÍDEO -->
+    <div id="videoModal" class="fixed inset-0 z-[100] bg-black/90 hidden items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300">
+        <button onclick="closeVideo()" class="absolute top-6 right-6 text-white hover:text-morocco-red transition z-[110]">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <div class="w-full max-w-5xl bg-black rounded-lg overflow-hidden shadow-2xl border border-gray-800 relative">
+            <video id="myVideo" controls class="w-full h-auto max-h-[80vh]">
+                <source src="tbourida vid.mp4" type="video/mp4">
+                Seu navegador não suporta este vídeo.
+            </video>
+        </div>
+    </div>
+
     <script>
+        // Função de Abas
         function openTab(tabId) {
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
@@ -485,6 +508,37 @@
                 }
             });
         }
+
+        // Funções de Vídeo
+        function openVideo() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('myVideo');
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Tenta reproduzir automaticamente ao abrir
+            video.play().catch(e => console.log("Autoplay bloqueado pelo navegador, usuário deve clicar play."));
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('myVideo');
+            
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            
+            // Pausa o vídeo e reinicia
+            video.pause();
+            video.currentTime = 0;
+        }
+
+        // Fechar modal ao clicar fora do vídeo
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideo();
+            }
+        });
     </script>
 </body>
 </html>
