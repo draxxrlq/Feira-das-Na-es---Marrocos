@@ -559,7 +559,7 @@
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         <div class="w-full max-w-5xl bg-black rounded-lg overflow-hidden shadow-2xl border border-gray-800 relative">
-            <video id="myVideo" controls class="w-full h-auto max-h-[80vh]">
+            <video id="estadio3.mp4" controls class="w-full h-auto max-h-[80vh]">
                 <source src="" type="video/mp4"> <!-- Source vazio inicialmente -->
                 Seu navegador não suporta este vídeo.
             </video>
@@ -587,7 +587,7 @@
         // Funções de Vídeo
         function openVideo(src) {
             const modal = document.getElementById('videoModal');
-            const video = document.getElementById('myVideo');
+            const video = document.getElementById('estadio3.mp4');
             
             // Define a fonte do vídeo dinamicamente
             video.src = src;
@@ -602,7 +602,7 @@
 
         function closeVideo() {
             const modal = document.getElementById('videoModal');
-            const video = document.getElementById('myVideo');
+            const video = document.getElementById('estadio3.mp4');
             
             modal.classList.add('hidden');
             modal.classList.remove('flex');
@@ -622,6 +622,7 @@
     </script>
 </body>
 </html>
+
 
 
 
